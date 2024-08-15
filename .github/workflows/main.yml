@@ -24,9 +24,16 @@ jobs:
     - name: Run build
       run: yarn build
 
-    - name: Test SSH connection
-      run: ssh -i ${{ secrets.SSH_KEY }} -o StrictHostKeyChecking=no -p ${{ secrets.SSH_PORT }} ${{ secrets.SSH_USER }}@${{ secrets.SSH_HOST }} "echo 'SSH connection successful'"
+    - name: Debug Secrets
+      run: |
+        echo "${{ secrets.SSH_HOST }}"
+        echo "${{ secrets.SSH_USER }}"
+        echo "Port: ${{ secrets.SSH_PORT }}"
+        echo "Key (first 10 chars): ${SSH_KEY:0:10}"
 
+
+    - name: Test SSH connection
+      run: ssh -i <(echo "${{ secrets.SSH_KEY }}" | tr -d '\r') -o StrictHostKeyChecking=no -p ${{ secrets.SSH_PORT }} ${{ secrets.SSH_USER }}@${{ secrets.SSH_HOST }} "echo 'SSH connection successful'"  
 
     # Copiar a pasta dist para dentro da Digital Ocean
     - name: Copy dist to Digital Ocean
