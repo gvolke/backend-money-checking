@@ -35,3 +35,17 @@ jobs:
         timeout: 120s
         source: ".,!node_modules"
         target: "~/app/backend-money-checking"
+        
+    # Executar yarn, migrations e reiniciar o servidor na Digital Ocean
+    - name: Run production scripts
+      uses: appleboy/ssh-action@v1.0.3
+      with:
+        host: ${{ secrets.SSH_HOST }}
+        username: ${{ secrets.SSH_USER }}
+        port: ${{ secrets.SSH_PORT }}
+        key: ${{ secrets.SSH_KEY }}
+        script: |
+          cd ~/app/backend-money-checking
+          yarn
+          ./node_modules/.bin/typeorm migration:run
+          pm2 restart moneychecking-api
