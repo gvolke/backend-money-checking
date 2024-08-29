@@ -1,69 +1,23 @@
-# Recuperação de senha
+<h1 align="center"> Backend Money Checking </h1>
 
-**RF (Requisitos Funcionais)**
+<p align="center">
+  <a href="#-tecnologias">Tecnologias</a>&nbsp;&nbsp;&nbsp;|&nbsp;&nbsp;&nbsp;
+  <a href="#-projeto">Projeto</a>&nbsp;&nbsp;&nbsp;|&nbsp;&nbsp;&nbsp;
+</p>
 
-- O usuário deve poder recuperar sua senha informando o seu e-mail;
-- O usuário deve receber um e-mail com instruções de recuperação de senha;
-- O usuário deve poder resetar sua senha;
+<br>
 
-**RNF (Requisitos não funcionais)**
+## Tecnologias Utilizadas
 
-- Utilizar Mailtrap para testar envios em ambiente de desenvolvimento;
-- Utilizar o Amazon SES para envios de e-mail em produção;
-- O envio de e-mails deve acontecer em segundo plano (background job);
+Esse projeto foi desenvolvido com as seguintes tecnologias:
 
-**RNF (Regras de Negócio)**
+- Node
+- Typescript
+- PostgresSQL, Redis e Mongodb
+- Jest
+- Typeorm
+- Git e Github
 
-- O link enviado por e-mail para resetar senha deve expirar em 2h;
-- O usuário precisa confirmar a nova senha ao resetar-la;
+## Sobre o Projeto
 
-# Atualização do perfil
-
-**RF**
-
-- O usuário deve poder atualizar seu nome, e-mail e/ou senha;
-
-**RNF**
-
-- O usuário não pode alterar seu e-mail para um e-mail já utilizado;
-- Para atualizar sua senha o usuário deve informar a senha antiga;
-- Para atualizar sua senha o usuário deve confirmar sua nova senha;
-
-# Painel do prestador (listagem de agendamentos)
-
-**RF**
-
-- O usuário deve poder listar seus agendamentos de um dia específico;
-- O prestador deve receber uma notificação sempre que houver um novo agendamento;
-- O prestador deve poder visualizar as notificações não lidas;
-
-**RNF**
-
-- Os agendamentos do prestador no dia devem ser armazenados em cache;
-- As notificações do prestador devem ser armazenadas no MongoDB;
-- As notificações do prestador devem ser enviadas em tempo real utilizando Socket.io;
-
-**RNF**
-
-- A notificação deve ter um status de lida ou não lidapara que o prestador possa controlar;
-
-# Agendamento do serviço
-
-**RF**
-
-- O usuário deve poder listar todos os prestadores de serviço cadastrados;
-- O usuário deve poder listar os dias de um mês com pelo menos um horário disponível para o prestador;
-- O usuário deve poder listar horários disponíveis em um dia específico de um prestador;
-- O usuário deve poder realizar um novo agendamento com um prestador;
-
-**RNF**
-
-- A listagem de prestadores deve ser armazenada em cache;
-
-**RNF**
-
-- Cada agendamento deve durar 1h exatamente;
-- Os agendamentos devem estar disponivais entre 8h as 19h (primeiro às 8h, último as 17h);
-- O usuário não pode agendar em um horário já ocupado;
-- O usuário não pode agendar em um horário que já passou;
-- O usuário não pode agendar serviços com ele mesmo;
+O Money Checking foi pensado para ser um aplicativo de gestão financeira simples, no qual podem ser feitos lançamentos de receitas e despesas para determinada data. Além disso também é possível alterar e excluir esses lançamentos e pesquisar por eles dentro do mês. O aplicativo mostra o saldo desses lançamentos dentro do mês no front-end mobile e mostra gráficos detalhados no front-end web. Também é possível fazer cadastro de conta e existe um controle de login para multi usuários.
