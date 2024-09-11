@@ -26,6 +26,8 @@ usersRouter.post(
   usersController.create
 );
 
+usersRouter.post("/remove", ensureAuthenticated, userAvatarController.remove);
+
 usersRouter.patch(
   "/avatar",
   ensureAuthenticated,
