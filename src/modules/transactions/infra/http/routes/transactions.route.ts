@@ -26,6 +26,23 @@ transactionsRouter.post(
   transactionsController.create
 );
 
+transactionsRouter.post(
+  "/many",
+  celebrate({
+    [Segments.BODY]: Joi.array().items(
+      Joi.object({
+        date: Joi.date().required(),
+        description: Joi.string().required(),
+        observation: Joi.string().allow(""),
+        type: Joi.string().required(),
+        value: Joi.number().required(),
+        category: Joi.string().required(),
+      })
+    ),
+  }),
+  transactionsController.createMany
+);
+
 transactionsRouter.get(
   "/:transactionId",
   celebrate({

@@ -6,6 +6,7 @@ import IGetValuesByMonthDTO from "../dtos/IGetValuesByMonthDTO";
 
 export default interface ITransactionsRepository {
   create(data: ICreateTransactionDTO): Promise<Transaction>;
+  createMany(data: ICreateTransactionDTO[]): Promise<Transaction[]>;
   update(transaction: Transaction): Promise<Transaction>;
   delete(transactionId: string, userId: string): Promise<void>;
   getTransaction(

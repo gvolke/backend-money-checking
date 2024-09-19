@@ -36,6 +36,31 @@ class NotificationsRepository implements ITransactionsRepository {
     return transaction;
   }
 
+  public async createMany(
+    data: ICreateTransactionDTO[]
+  ): Promise<Transaction[]> {
+    const tempTransactions: Transaction[] = [];
+
+    for (let i = 0; i < data.length; i++) {
+      const transaction = new Transaction();
+
+      Object.assign(transaction, {
+        date: data[i].date,
+        description: data[i].description,
+        observation: data[i].observation,
+        type: data[i].type,
+        user_id: data[i].user_id,
+        value: data[i].value,
+        category: data[i].category,
+      });
+
+      this.transactions.push(transaction);
+      tempTransactions.push(transaction);
+    }
+
+    return tempTransactions;
+  }
+
   public async update(transaction: Transaction): Promise<Transaction> {
     const index = this.transactions.findIndex(
       (updateTransaction) => (updateTransaction.id = transaction.id)

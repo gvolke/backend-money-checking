@@ -37,6 +37,16 @@ class TransactionsRepository implements ITransactionsRepository {
     return transaction;
   }
 
+  public async createMany(
+    data: ICreateTransactionDTO[]
+  ): Promise<Transaction[]> {
+    const transaction = this.ormRepository.create(data);
+
+    await this.ormRepository.save(transaction);
+
+    return transaction;
+  }
+
   public async update(transaction: Transaction): Promise<Transaction> {
     return this.ormRepository.save(transaction);
   }
