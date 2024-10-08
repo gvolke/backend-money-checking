@@ -39,7 +39,9 @@ class GetValuesByCategoryService {
         grouped.push(categoryObj);
       }
 
-      categoryObj.value = Number(categoryObj.value) + Number(transaction.value);
+      categoryObj.value =
+        Number(categoryObj.value.toFixed(2)) +
+        Number(transaction.value.toFixed(2));
     });
 
     return grouped;

@@ -54,14 +54,17 @@ class GetValuesByMonthService {
 
       if (transaction.type === "ENTRADA") {
         monthObj.totalIncomes =
-          Number(monthObj.totalIncomes) + Number(transaction.value);
+          Number(monthObj.totalIncomes.toFixed(2)) +
+          Number(transaction.value.toFixed(2));
       } else if (transaction.type === "SAIDA") {
         monthObj.totalOutcomes =
-          Number(monthObj.totalOutcomes) + Number(transaction.value);
+          Number(monthObj.totalOutcomes.toFixed(2)) +
+          Number(transaction.value.toFixed(2));
       }
 
       monthObj.monthBalance =
-        Number(monthObj.totalIncomes) - Number(monthObj.totalOutcomes);
+        Number(monthObj.totalIncomes.toFixed(2)) -
+        Number(monthObj.totalOutcomes.toFixed(2));
     });
 
     return grouped;
