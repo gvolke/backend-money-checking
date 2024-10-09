@@ -62,6 +62,10 @@ class GetValuesByMonthService {
 
       monthObj.monthBalance =
         Number(monthObj.totalIncomes) - Number(monthObj.totalOutcomes);
+
+      monthObj.totalIncomes = parseFloat(monthObj.totalIncomes.toFixed(2));
+      monthObj.totalOutcomes = parseFloat(monthObj.totalOutcomes.toFixed(2));
+      monthObj.monthBalance = parseFloat(monthObj.monthBalance.toFixed(2));
     });
 
     return grouped;

@@ -40,6 +40,8 @@ class GetValuesByCategoryService {
       }
 
       categoryObj.value = Number(categoryObj.value) + Number(transaction.value);
+
+      categoryObj.value = parseFloat(categoryObj.value.toFixed(2));
     });
 
     return grouped;
